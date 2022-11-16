@@ -1,0 +1,48 @@
+{% load static %}
+{% block content %}
+{% include 'header.html' %}
+
+<div class="container">
+    {% csrf_token %}
+    <table class="table table-striped table-dark" border="2" style="width: 600px; border-radius: 6px; "align="center">
+        <br>
+        
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">NAME</th>
+                <th scope="col">PLACE</th>
+                <th scope="col">MOB NO:</th>
+                <th scope="col">AGE</th>
+                <th scope="col">EMAIL</th>
+                <th scope="col">OCCUPATION</th>
+                <th scope="col">IMAGE</th>
+                <th scope="col">DELETE</th>
+
+
+                
+            </tr>
+            {% for i in result %}
+            <tr>
+                <td>{{i.id}}</td>
+                <td>{{i.fname}}{{i.lname}}</td>
+                <td>{{i.city}}/{{i.state}}/{{i.country}}/{{i.pincode}}</td>
+                <td>{{i.umob}}</td>
+                <td>{{i.age}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.occupation}}</td>
+                <td><img src="../media/{{i.image}}" alt="" style="height: 50px; width: 50px;"></td>
+                <td><a href="{% url 'udelete' id=i.id %}"><button>DELETE</button></a></td>
+                
+
+                
+            </tr>
+            {% endfor %}
+       
+       
+      </table>
+      </div>
+    
+    
+    {% include 'footer.html' %}
+       
+    {% endblock %}
